@@ -2,7 +2,8 @@ name: Run Python Script
 
 on:
   schedule:
-    - cron: '*/23 * * * *'
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
 
 jobs:
   run:
@@ -22,6 +23,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run script with environment variables
+        timeout-minutes: 10
         env:
           scooter_id: ${{ secrets.SCOOTER_ID }}
           api_token: ${{ secrets.API_TOKEN }}
